@@ -1,0 +1,31 @@
+server:
+  port: ${SERVER_PORT:8082}
+spring:
+  application:
+    name: skcb-service
+  datasource:
+    url: localhost
+    #url: couchbase://localhost:32890
+    #url: jdbc:couchbase:localhost/mybucket
+    username: ${COUCHBASE_USERNAME:admin}
+    password: ${COUCHBASE_PASSWORD:password}
+    bucketName: ${COUCHBASE_BUCKETNAME:mybucket}
+    scope: ${COUCHBASE_SCOPE:hepsi-emplak-scope}
+    ddl: none
+  docker:
+    compose:
+      lifecycle-management: none
+app:
+  jwtSecret: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
+  jwtExpirationInMs: '#{60 * 50 * 1000}' # 50 minutes in milliseconds
+springdoc:
+  api-docs:
+    path: /api/v1/swagger
+  version: 1
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+        data:
+          mongodb: debug
