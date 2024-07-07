@@ -8,7 +8,9 @@ import java.util.Date
 import java.util.UUID
 import org.slf4j.Logger
 import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.context.annotation.Profile
 import org.springframework.context.event.EventListener
+import org.springframework.core.env.Profiles
 import org.springframework.scheduling.annotation.Async
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
@@ -22,8 +24,11 @@ class Listeners(
 ){
     private val log: Logger by logger()
 
+    // FIXME: @Profile("!integration-test")
     @EventListener(ApplicationReadyEvent::class)
     fun onApplicationReadyEvent(event: ApplicationReadyEvent) {
+        if (event.applicationContext.environment.acceptsProfiles(Profiles.of("integration-test")))
+            return
         if (dataSourceConfig.ddl == "create") {
             User(name = "anil1", email = "anil1@senocak.com", password = passwordEncoder.encode("asenocak"))
                 .also {
@@ -47,7 +52,7 @@ class Listeners(
 
             User(name = "anil3", email = "anil3@gmail.com", password = passwordEncoder.encode("asenocak"))
                 .also {
-                    it.id = UUID.fromString("3cb9374e-4e52-4142-a1af-16144ef4a27d")
+                    it.id = UUID.fromString("4cb9374e-4e52-4142-a1af-16144ef4a27d")
                     it.roles = listOf(RoleName.ROLE_USER.role)
                 }
                 .run {

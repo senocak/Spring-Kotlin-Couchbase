@@ -20,10 +20,8 @@ import org.springframework.transaction.annotation.Transactional
 @ActiveProfiles(value = ["integration-test"])
 @TestClassOrder(ClassOrderer.OrderAnnotation::class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-//@Import(TestConfig::class)
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 @ContextConfiguration(initializers = [
     CouchbaseInitializer::class,
 ])
-//@TestPropertySource({"/application-integration-test.yml" })
 annotation class SpringBootTestConfig

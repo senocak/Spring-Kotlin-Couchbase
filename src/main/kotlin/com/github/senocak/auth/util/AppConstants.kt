@@ -10,7 +10,7 @@ object AppConstants {
     const val SECURITY_SCHEME_NAME = "bearerAuth"
 }
 
-private class RandomStringGenerator(
+class RandomStringGenerator(
     private val length: Int = 1,
 ) {
     private val symbols: CharArray = ALPHA_NUM.toCharArray()
@@ -27,5 +27,3 @@ private class RandomStringGenerator(
         private val ALPHA_NUM: String = UPPER + UPPER.lowercase() + DIGITS
     }
 }
-
-fun Int.randomStringGenerator(): String = RandomStringGenerator(length = this).next()

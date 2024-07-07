@@ -8,25 +8,33 @@ import com.github.senocak.auth.TestConstants.USER_PASSWORD
 import com.github.senocak.auth.config.SpringBootTestConfig
 import com.github.senocak.auth.controller.AuthController
 import com.github.senocak.auth.controller.BaseController
+import com.github.senocak.auth.domain.User
 import com.github.senocak.auth.domain.dto.LoginRequest
 import com.github.senocak.auth.domain.dto.RegisterRequest
 import com.github.senocak.auth.exception.RestExceptionHandler
 import com.github.senocak.auth.service.UserService
 import com.github.senocak.auth.util.OmaErrorMessageType
+import com.github.senocak.auth.util.RoleName
+import java.util.Date
+import java.util.UUID
 import org.hamcrest.Matchers.containsInAnyOrder
 import org.hamcrest.Matchers.hasSize
 import org.hamcrest.core.IsEqual.equalTo
 import org.hamcrest.core.IsNull
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.RequestBuilder
 import org.springframework.test.web.servlet.ResultActions
@@ -39,11 +47,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
  * @see AuthController
  */
 @SpringBootTestConfig
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("Integration Tests for AuthController")
 class AuthControllerIT {
     @Autowired private lateinit var authController: AuthController
     @Autowired private lateinit var objectMapper: ObjectMapper
     @Autowired private lateinit var userService: UserService
+    @Autowired private lateinit var passwordEncoder: PasswordEncoder
     @Autowired private lateinit var restExceptionHandler: RestExceptionHandler
 
     private lateinit var mockMvc: MockMvc
@@ -53,6 +63,43 @@ class AuthControllerIT {
         mockMvc = MockMvcBuilders.standaloneSetup(authController)
             .setControllerAdvice(restExceptionHandler)
             .build()
+    }
+
+    @AfterAll
+    fun afterAll() {
+        userService.deleteAllUsers()
+    }
+
+    @BeforeAll
+    fun beforeAll() {
+        User(name = "anil1", email = "anil1@senocak.com", password = passwordEncoder.encode("asenocak"))
+            .also {
+                it.id = UUID.fromString("2cb9374e-4e52-4142-a1af-16144ef4a27d")
+                it.roles = listOf(RoleName.ROLE_USER.role, RoleName.ROLE_ADMIN.role)
+                it.emailActivatedAt = Date()
+            }
+            .run {
+                userService.save(user = this)
+            }
+
+        User(name = "anil2", email = "anil2@gmail.com", password = passwordEncoder.encode("asenocak"))
+            .also {
+                it.id = UUID.fromString("3cb9374e-4e52-4142-a1af-16144ef4a27d")
+                it.roles = listOf(RoleName.ROLE_USER.role)
+                it.emailActivatedAt = Date()
+            }
+            .run {
+                userService.save(user = this)
+            }
+
+        User(name = "anil3", email = "anil3@gmail.com", password = passwordEncoder.encode("asenocak"))
+            .also {
+                it.id = UUID.fromString("4cb9374e-4e52-4142-a1af-16144ef4a27d")
+                it.roles = listOf(RoleName.ROLE_USER.role)
+            }
+            .run {
+                userService.save(user = this)
+            }
     }
 
     @Nested
@@ -121,11 +168,11 @@ class AuthControllerIT {
 
         @Test
         @Order(3)
-        @DisplayName("ServerException is expected since credentials are not valid")
+        @DisplayName("ServerException is expected since user not existed")
         @Throws(Exception::class)
         fun givenNotActivatedUser_whenLogin_thenThrowServerException() {
             // Given
-            request.email = "anil2@gmail.com"
+            request.email = "not@exist.com"
             request.password = "asenocak"
             val requestBuilder: RequestBuilder = MockMvcRequestBuilders
                 .post("${BaseController.V1_AUTH_URL}/login")
@@ -135,17 +182,17 @@ class AuthControllerIT {
             val perform: ResultActions = mockMvc.perform(requestBuilder)
             // Then
             perform
-                .andExpect(MockMvcResultMatchers.status().isUnauthorized)
+                .andExpect(MockMvcResultMatchers.status().isNotFound)
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.statusCode",
-                    equalTo(HttpStatus.UNAUTHORIZED.value())))
+                    equalTo(HttpStatus.NOT_FOUND.value())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.error.id",
-                    equalTo(OmaErrorMessageType.UNAUTHORIZED.messageId)))
+                    equalTo(OmaErrorMessageType.NOT_FOUND.messageId)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.error.text",
-                    equalTo(OmaErrorMessageType.UNAUTHORIZED.text)))
+                    equalTo(OmaErrorMessageType.NOT_FOUND.text)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.variables",
                     hasSize<Any>(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.variables[0]",
-                    equalTo("Email not activated!")))
+                    equalTo("user_not_found")))
         }
 
         @Test
@@ -200,19 +247,14 @@ class AuthControllerIT {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.error.text",
                     equalTo(OmaErrorMessageType.JSON_SCHEMA_VALIDATOR.text)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.variables",
-                    hasSize<Any>(6)))
+                    hasSize<Any>(5)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.variables",
                     containsInAnyOrder(
                         "password: {min_max_length}",
-                        "password: Password must be 6 or more characters in length.\n" +
-                                "Password must contain 1 or more uppercase characters.\n" +
-                                "Password must contain 1 or more lowercase characters.\n" +
-                                "Password must contain 1 or more digit characters.\n" +
-                                "Password must contain 1 or more special characters.",
-                        "email: Invalid email",
-                        "password: {not_blank}",
                         "name: {not_blank}",
-                        "name: {min_max_length}"
+                        "name: {min_max_length}",
+                        "email: Invalid email",
+                        "password: {not_blank}"
                     )))
         }
 
@@ -243,7 +285,7 @@ class AuthControllerIT {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.variables",
                     hasSize<Any>(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exception.variables[0]",
-                    equalTo("Email is already using: $USER_EMAIL")))
+                    equalTo("unique_email: $USER_EMAIL")))
         }
 
         @Test
@@ -265,7 +307,7 @@ class AuthControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isCreated)
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message", IsNull.notNullValue()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message",
-                    equalTo("Please verify your email to login")))
+                    equalTo("email_has_to_be_verified")))
         }
     }
 

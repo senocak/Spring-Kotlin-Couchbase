@@ -6,7 +6,6 @@ import com.github.senocak.auth.domain.dto.TodoDto
 import com.github.senocak.auth.domain.dto.UserResponse
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.util.StringUtils
 
 /**
  * @return -- UserResponse object
@@ -34,9 +33,4 @@ fun <R : Any> R.logger(): Lazy<Logger> = lazy {
     LoggerFactory.getLogger((if (javaClass.kotlin.isCompanion) javaClass.enclosingClass else javaClass).name)
 }
 
-/**
- * Split a string into two parts, separated by a delimiter.
- * @param delimiter The delimiter string
- * @return The array of two strings.
- */
-fun String.split(delimiter: String): Array<String>? = StringUtils.split(this, delimiter)
+fun Int.randomStringGenerator(): String = RandomStringGenerator(length = this).next()

@@ -26,6 +26,8 @@ class UserService(
     private val userRepository: UserRepository,
     private val todoItemRepository: TodoItemRepository
 ): UserDetailsService {
+    fun findAll() = userRepository.findAll()
+
     /**
      * @param email -- string email to find in db
      * @return -- true or false
@@ -47,6 +49,8 @@ class UserService(
      * @return -- User object that is persisted to db
      */
     fun save(user: User): User = userRepository.save(user)
+
+    fun deleteAllUsers() = userRepository.deleteAll()
 
     /**
      * @param email -- id
