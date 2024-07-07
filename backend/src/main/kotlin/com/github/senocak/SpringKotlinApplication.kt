@@ -1,4 +1,4 @@
-package com.github.senocak.auth
+package com.github.senocak
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
