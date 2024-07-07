@@ -1,4 +1,4 @@
-package com.github.senocak.auth.security
+package com.github.senocak.security
 
 @Target(
     AnnotationTarget.ANNOTATION_CLASS,

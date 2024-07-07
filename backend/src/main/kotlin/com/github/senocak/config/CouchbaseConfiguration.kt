@@ -1,10 +1,10 @@
-package com.github.senocak.auth.config
+package com.github.senocak.config
 
 import com.couchbase.client.core.error.BucketNotFoundException
 import com.couchbase.client.java.Bucket
 import com.couchbase.client.java.Cluster
 import com.couchbase.client.java.env.ClusterEnvironment
-import com.github.senocak.auth.util.logger
+import com.github.senocak.util.logger
 import org.slf4j.Logger
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean

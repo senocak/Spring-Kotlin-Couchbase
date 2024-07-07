@@ -1,8 +1,8 @@
-package com.github.senocak.auth.config
+package com.github.senocak.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.senocak.auth.security.AuthorizationInterceptor
-import com.github.senocak.auth.util.AppConstants.SECURITY_SCHEME_NAME
+import com.github.senocak.security.AuthorizationInterceptor
+import com.github.senocak.util.AppConstants.SECURITY_SCHEME_NAME
 import io.swagger.v3.core.jackson.ModelResolver
 import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.OpenAPI
@@ -18,6 +18,7 @@ import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry
@@ -28,6 +29,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class AppConfig(
     private val authorizationInterceptor: AuthorizationInterceptor
 ): WebMvcConfigurer {
+    override fun addCorsMappings(registry: CorsRegistry) {
+        registry.addMapping("/**")
+    }
+
     override fun addViewControllers(registry: ViewControllerRegistry) {
         registry.addRedirectViewController("/", "/index.html")
         registry.addRedirectViewController("/swagger", "/swagger-ui/index.html")

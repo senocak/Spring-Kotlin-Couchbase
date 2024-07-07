@@ -1,8 +1,8 @@
-package com.github.senocak.auth.security
+package com.github.senocak.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.senocak.auth.exception.RestExceptionHandler
-import com.github.senocak.auth.util.logger
+import com.github.senocak.exception.RestExceptionHandler
+import com.github.senocak.util.logger
 import org.slf4j.Logger
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.AuthenticationException

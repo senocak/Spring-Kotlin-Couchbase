@@ -1,7 +1,7 @@
-package com.github.senocak.auth.config
+package com.github.senocak.config
 
-import com.github.senocak.auth.security.JwtAuthenticationEntryPoint
-import com.github.senocak.auth.security.JwtAuthenticationFilter
+import com.github.senocak.security.JwtAuthenticationEntryPoint
+import com.github.senocak.security.JwtAuthenticationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile

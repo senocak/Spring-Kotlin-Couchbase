@@ -1,6 +1,6 @@
-package com.github.senocak.auth.exception
+package com.github.senocak.exception
 
-import com.github.senocak.auth.util.OmaErrorMessageType
+import com.github.senocak.util.OmaErrorMessageType
 import org.springframework.http.HttpStatus
 
 open class RestException(msg: String, t: Throwable? = null): Exception(msg, t)

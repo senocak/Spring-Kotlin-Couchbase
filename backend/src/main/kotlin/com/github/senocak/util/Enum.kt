@@ -1,4 +1,4 @@
-package com.github.senocak.auth.util
+package com.github.senocak.util
 
 import com.fasterxml.jackson.annotation.JsonValue
 

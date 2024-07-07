@@ -1,7 +1,7 @@
-package com.github.senocak.auth.util.validation
+package com.github.senocak.util.validation
 
-import com.github.senocak.auth.domain.dto.UpdateUserDto
-import com.github.senocak.auth.util.logger
+import com.github.senocak.domain.dto.UpdateUserDto
+import com.github.senocak.util.logger
 import jakarta.validation.Constraint
 import jakarta.validation.ConstraintValidator
 import jakarta.validation.ConstraintValidatorContext

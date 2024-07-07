@@ -1,6 +1,6 @@
-package com.github.senocak.auth.service
+package com.github.senocak.service
 
-import com.github.senocak.auth.util.logger
+import com.github.senocak.util.logger
 import org.slf4j.Logger
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.User

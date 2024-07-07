@@ -1,4 +1,4 @@
-package com.github.senocak.auth.domain.dto
+package com.github.senocak.domain.dto
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude

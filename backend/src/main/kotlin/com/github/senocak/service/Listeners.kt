@@ -1,14 +1,13 @@
-package com.github.senocak.auth.service
+package com.github.senocak.service
 
-import com.github.senocak.auth.config.DataSourceConfig
-import com.github.senocak.auth.domain.User
-import com.github.senocak.auth.util.RoleName
-import com.github.senocak.auth.util.logger
+import com.github.senocak.config.DataSourceConfig
+import com.github.senocak.domain.User
+import com.github.senocak.util.RoleName
+import com.github.senocak.util.logger
 import java.util.Date
 import java.util.UUID
 import org.slf4j.Logger
 import org.springframework.boot.context.event.ApplicationReadyEvent
-import org.springframework.context.annotation.Profile
 import org.springframework.context.event.EventListener
 import org.springframework.core.env.Profiles
 import org.springframework.scheduling.annotation.Async

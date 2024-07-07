@@ -1,6 +1,6 @@
-package com.github.senocak.auth.domain.dto
+package com.github.senocak.domain.dto
 
-import com.github.senocak.auth.domain.TodoItem
+import com.github.senocak.domain.TodoItem
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Size
 import org.springframework.data.domain.Page

@@ -6,3 +6,4 @@
 .kotlin
 **/var/logs/
 **/.DS_STORE
+**/node_modules

@@ -1,4 +1,4 @@
-package com.github.senocak.auth.util
+package com.github.senocak.util
 
 object AppConstants {
     const val DEFAULT_PAGE_NUMBER = "0"

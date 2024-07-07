@@ -1,4 +1,4 @@
-package com.github.senocak.auth.security
+package com.github.senocak.security
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException

@@ -1,4 +1,4 @@
-package com.github.senocak.auth.config
+package com.github.senocak.config
 
 import org.apache.catalina.connector.Connector
 import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer

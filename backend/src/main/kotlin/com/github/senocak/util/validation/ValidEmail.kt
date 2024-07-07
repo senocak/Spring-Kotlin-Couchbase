@@ -1,6 +1,6 @@
-package com.github.senocak.auth.util.validation
+package com.github.senocak.util.validation
 
-import com.github.senocak.auth.util.logger
+import com.github.senocak.util.logger
 import jakarta.validation.Constraint
 import kotlin.reflect.KClass
 import org.slf4j.Logger

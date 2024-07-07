@@ -1,18 +1,18 @@
-package com.github.senocak.auth.controller
+package com.github.senocak.controller
 
-import com.github.senocak.auth.domain.User
-import com.github.senocak.auth.domain.dto.ExceptionDto
-import com.github.senocak.auth.domain.dto.LoginRequest
-import com.github.senocak.auth.domain.dto.RegisterRequest
-import com.github.senocak.auth.domain.dto.UserResponse
-import com.github.senocak.auth.domain.dto.UserWrapperResponse
-import com.github.senocak.auth.exception.ServerException
-import com.github.senocak.auth.security.JwtTokenProvider
-import com.github.senocak.auth.service.UserService
-import com.github.senocak.auth.util.OmaErrorMessageType
-import com.github.senocak.auth.util.RoleName
-import com.github.senocak.auth.util.convertEntityToDto
-import com.github.senocak.auth.util.logger
+import com.github.senocak.domain.User
+import com.github.senocak.domain.dto.ExceptionDto
+import com.github.senocak.domain.dto.LoginRequest
+import com.github.senocak.domain.dto.RegisterRequest
+import com.github.senocak.domain.dto.UserResponse
+import com.github.senocak.domain.dto.UserWrapperResponse
+import com.github.senocak.exception.ServerException
+import com.github.senocak.security.JwtTokenProvider
+import com.github.senocak.service.UserService
+import com.github.senocak.util.OmaErrorMessageType
+import com.github.senocak.util.RoleName
+import com.github.senocak.util.convertEntityToDto
+import com.github.senocak.util.logger
 import io.micrometer.core.annotation.Counted
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
@@ -33,6 +33,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -43,6 +44,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping(BaseController.V1_AUTH_URL)
 @Tag(name = "Authentication", description = "AUTH API")
+@CrossOrigin
 class AuthController(
     private val userService: UserService,
     private val tokenProvider: JwtTokenProvider,

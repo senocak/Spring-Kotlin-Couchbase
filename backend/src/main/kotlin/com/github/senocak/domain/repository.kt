@@ -1,4 +1,4 @@
-package com.github.senocak.auth.domain
+package com.github.senocak.domain
 
 import java.util.UUID
 import org.springframework.data.couchbase.repository.CouchbaseRepository

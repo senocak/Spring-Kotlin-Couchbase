@@ -1,4 +1,4 @@
-package com.github.senocak.auth.domain
+package com.github.senocak.domain
 
 import java.io.Serializable
 import java.util.Date

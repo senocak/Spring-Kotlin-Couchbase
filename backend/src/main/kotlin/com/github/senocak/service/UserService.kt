@@ -1,14 +1,14 @@
-package com.github.senocak.auth.service
+package com.github.senocak.service
 
-import com.github.senocak.auth.domain.TodoItem
-import com.github.senocak.auth.domain.TodoItemRepository
-import com.github.senocak.auth.domain.User
-import com.github.senocak.auth.domain.UserRepository
-import com.github.senocak.auth.domain.dto.CreateTodoDto
-import com.github.senocak.auth.domain.dto.UpdateTodoDto
-import com.github.senocak.auth.exception.ServerException
-import com.github.senocak.auth.util.OmaErrorMessageType
-import com.github.senocak.auth.util.RoleName
+import com.github.senocak.domain.TodoItem
+import com.github.senocak.domain.TodoItemRepository
+import com.github.senocak.domain.User
+import com.github.senocak.domain.UserRepository
+import com.github.senocak.domain.dto.CreateTodoDto
+import com.github.senocak.domain.dto.UpdateTodoDto
+import com.github.senocak.exception.ServerException
+import com.github.senocak.util.OmaErrorMessageType
+import com.github.senocak.util.RoleName
 import java.util.UUID
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

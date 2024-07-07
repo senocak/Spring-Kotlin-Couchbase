@@ -1,8 +1,8 @@
-package com.github.senocak.auth.exception
+package com.github.senocak.exception
 
-import com.github.senocak.auth.domain.dto.ExceptionDto
-import com.github.senocak.auth.util.OmaErrorMessageType
-import com.github.senocak.auth.util.logger
+import com.github.senocak.domain.dto.ExceptionDto
+import com.github.senocak.util.OmaErrorMessageType
+import com.github.senocak.util.logger
 import java.util.function.Consumer
 import org.slf4j.Logger
 import org.springframework.http.HttpStatus

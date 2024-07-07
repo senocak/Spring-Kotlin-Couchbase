@@ -1,9 +1,9 @@
-package com.github.senocak.auth.util
+package com.github.senocak.util
 
-import com.github.senocak.auth.domain.TodoItem
-import com.github.senocak.auth.domain.User
-import com.github.senocak.auth.domain.dto.TodoDto
-import com.github.senocak.auth.domain.dto.UserResponse
+import com.github.senocak.domain.TodoItem
+import com.github.senocak.domain.User
+import com.github.senocak.domain.dto.TodoDto
+import com.github.senocak.domain.dto.UserResponse
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

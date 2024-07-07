@@ -1,9 +1,9 @@
-package com.github.senocak.auth.security
+package com.github.senocak.security
 
-import com.github.senocak.auth.domain.User
-import com.github.senocak.auth.service.UserService
-import com.github.senocak.auth.util.RoleName
-import com.github.senocak.auth.util.logger
+import com.github.senocak.domain.User
+import com.github.senocak.service.UserService
+import com.github.senocak.util.RoleName
+import com.github.senocak.util.logger
 import org.slf4j.Logger
 import org.slf4j.MDC
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException

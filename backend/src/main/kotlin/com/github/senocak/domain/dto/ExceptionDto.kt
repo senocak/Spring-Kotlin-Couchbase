@@ -1,4 +1,4 @@
-package com.github.senocak.auth.domain.dto
+package com.github.senocak.domain.dto
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.annotation.JsonTypeInfo

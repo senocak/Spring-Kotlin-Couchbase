@@ -1,7 +1,7 @@
-package com.github.senocak.auth.controller
+package com.github.senocak.controller
 
-import com.github.senocak.auth.exception.ServerException
-import com.github.senocak.auth.util.OmaErrorMessageType
+import com.github.senocak.exception.ServerException
+import com.github.senocak.util.OmaErrorMessageType
 import org.springframework.http.HttpHeaders
 import org.springframework.validation.BindingResult
 import org.springframework.validation.FieldError

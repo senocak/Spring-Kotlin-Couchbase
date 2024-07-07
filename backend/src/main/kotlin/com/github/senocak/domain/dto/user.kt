@@ -1,8 +1,8 @@
-package com.github.senocak.auth.domain.dto
+package com.github.senocak.domain.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
-import com.github.senocak.auth.util.validation.PasswordMatches
+import com.github.senocak.util.validation.PasswordMatches
 import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Size

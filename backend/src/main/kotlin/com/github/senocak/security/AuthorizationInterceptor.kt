@@ -1,7 +1,7 @@
-package com.github.senocak.auth.security
+package com.github.senocak.security
 
-import com.github.senocak.auth.service.AuthenticationService
-import com.github.senocak.auth.util.logger
+import com.github.senocak.service.AuthenticationService
+import com.github.senocak.util.logger
 import org.apache.commons.lang3.exception.ExceptionUtils
 import org.slf4j.Logger
 import org.springframework.core.DefaultParameterNameDiscoverer

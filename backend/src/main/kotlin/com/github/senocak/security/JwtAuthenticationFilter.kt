@@ -1,11 +1,11 @@
-package com.github.senocak.auth.security
+package com.github.senocak.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.senocak.auth.exception.RestExceptionHandler
-import com.github.senocak.auth.service.UserService
-import com.github.senocak.auth.util.AppConstants.TOKEN_HEADER_NAME
-import com.github.senocak.auth.util.AppConstants.TOKEN_PREFIX
-import com.github.senocak.auth.util.logger
+import com.github.senocak.exception.RestExceptionHandler
+import com.github.senocak.service.UserService
+import com.github.senocak.util.AppConstants.TOKEN_HEADER_NAME
+import com.github.senocak.util.AppConstants.TOKEN_PREFIX
+import com.github.senocak.util.logger
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletException
 import jakarta.servlet.http.HttpServletRequest

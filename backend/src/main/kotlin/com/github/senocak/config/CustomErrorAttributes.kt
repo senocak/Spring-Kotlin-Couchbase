@@ -1,8 +1,8 @@
-package com.github.senocak.auth.config
+package com.github.senocak.config
 
-import com.github.senocak.auth.domain.dto.ExceptionDto
-import com.github.senocak.auth.util.OmaErrorMessageType
-import com.github.senocak.auth.util.logger
+import com.github.senocak.domain.dto.ExceptionDto
+import com.github.senocak.util.OmaErrorMessageType
+import com.github.senocak.util.logger
 import org.slf4j.Logger
 import org.springframework.boot.web.error.ErrorAttributeOptions
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes
