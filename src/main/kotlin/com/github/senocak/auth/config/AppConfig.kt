@@ -3,8 +3,6 @@ package com.github.senocak.auth.config
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.senocak.auth.security.AuthorizationInterceptor
 import com.github.senocak.auth.util.AppConstants.SECURITY_SCHEME_NAME
-import com.github.senocak.auth.util.logger
-import com.google.common.util.concurrent.ThreadFactoryBuilder
 import io.swagger.v3.core.jackson.ModelResolver
 import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.OpenAPI
@@ -12,17 +10,14 @@ import io.swagger.v3.oas.models.info.Info
 import io.swagger.v3.oas.models.info.License
 import io.swagger.v3.oas.models.security.SecurityScheme
 import io.swagger.v3.oas.models.servers.Server
-import org.slf4j.Logger
 import org.springdoc.core.models.GroupedOpenApi
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableAsync
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.client.RestTemplate
-import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry
@@ -33,25 +28,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class AppConfig(
     private val authorizationInterceptor: AuthorizationInterceptor
 ): WebMvcConfigurer {
-    private val log: Logger by logger()
-
-    override fun configureAsyncSupport(configurer: AsyncSupportConfigurer) {
-        val runtime: Runtime = Runtime.getRuntime()
-        val corePoolSize: Int = runtime.availableProcessors()
-        val executor = ThreadPoolTaskExecutor()
-        executor.corePoolSize = corePoolSize
-        executor.maxPoolSize = corePoolSize * 1_000
-        executor.setThreadFactory(ThreadFactoryBuilder().setNameFormat("async-thread-%d").build())
-        executor.queueCapacity = -1
-        executor.initialize()
-        configurer
-            .setDefaultTimeout(120_000)
-            .setTaskExecutor(executor)
-        log.info("Core pool size: ${executor.corePoolSize}, max pool size: ${executor.maxPoolSize}," +
-                "keepAliveSeconds: ${executor.keepAliveSeconds}, queueCapacity: ${executor.queueCapacity}," +
-                "queueSize: ${executor.queueSize}")
-    }
-
     override fun addViewControllers(registry: ViewControllerRegistry) {
         registry.addRedirectViewController("/", "/index.html")
         registry.addRedirectViewController("/swagger", "/swagger-ui/index.html")

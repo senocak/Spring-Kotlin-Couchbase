@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.github.senocak"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -26,16 +26,12 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 
-    implementation("com.google.guava:guava:33.0.0-jre")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
-    //implementation("org.passay:passay:1.6.2")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-
-    runtimeOnly("org.springframework.boot:spring-boot-docker-compose")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
@@ -46,7 +42,6 @@ dependencies {
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.junit.jupiter:junit-jupiter-params")
-    testImplementation("org.instancio:instancio-junit:3.7.1")
 }
 
 tasks.withType<KotlinCompile> {
@@ -59,29 +54,18 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
     maxHeapSize = "1G"
-    //val testType: String = "unit"
-    //    .takeUnless { project.hasProperty("profile") }
-    //    ?: "${project.property("profile")}"
-    //println("Profile test type: $testType")
-    //when (testType) {
-    //    "integration" -> {
-    //        include("**/*IT.*")
-    //    }
-    //    "unit" -> {
-    //        include("**/*Test.*")
-    //        exclude("**/*IT.*")
-    //    }
-    //    else -> {
-    //        // Default to unit
-    //        include("**/*Test.*")
-    //        include("**/*IT.*")
-    //    }
-    //}
+    val testType: String = "unit"
+        .takeUnless { project.hasProperty("profile") }
+        ?: "${project.property("profile")}"
+    println(message = "Profile test type: $testType")
+    when (testType) {
+        "integration" -> include("**/*IT.*")
+        else -> include("**/*Test.*")
+    }
 }
 
-// Integration test task (assuming it's named integrationTest)
-//tasks.register<Test>("integrationTest") {
-//    description = "Runs the integration tests"
-//    group = "Verification"
-//    include("**/*IT.*")
-//}
+tasks.register<Test>("integrationTest") {
+    description = "Runs the integration tests"
+    group = "Verification"
+    include("**/*IT.*")
+}

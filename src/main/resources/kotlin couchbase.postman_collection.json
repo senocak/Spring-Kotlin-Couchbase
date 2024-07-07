@@ -1,0 +1,555 @@
+{
+	"info": {
+		"_postman_id": "d94e0b99-1a10-4209-b1a3-c866cd13300c",
+		"name": "kotlin couchbase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7821151",
+		"_collection_link": "https://lively-comet-8198.postman.co/workspace/An%C4%B1l~d33d46fc-ebc0-4ccb-81ba-caceff009d2d/collection/7821151-d94e0b99-1a10-4209-b1a3-c866cd13300c?action=share&source=collection_link&creator=7821151"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login-user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const   response    =   pm.response",
+									"        json        =   response.json()",
+									"pm.test(\"Status code is 200\", function () {",
+									"    response.to.have.status(200)",
+									"    pm.collectionVariables.set(\"token\", json.token)",
+									"    pm.collectionVariables.set(\"username\", json.user.username)",
+									"    pm.collectionVariables.set(\"email\", json.user.email)",
+									"    pm.collectionVariables.set(\"refreshToken\", json.refreshToken)",
+									"    pm.collectionVariables.set(\"token1\", json.token)",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"anil1@senocak.com\",\n    \"password\": \"asenocak\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login-user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const   response    =   pm.response",
+									"        json        =   response.json()",
+									"pm.test(\"Status code is 200\", function () {",
+									"    response.to.have.status(200)",
+									"    pm.collectionVariables.set(\"token\", json.token)",
+									"    pm.collectionVariables.set(\"username\", json.user.username)",
+									"    pm.collectionVariables.set(\"email\", json.user.email)",
+									"    pm.collectionVariables.set(\"refreshToken\", json.refreshToken)",
+									"",
+									"    pm.globals.set(\"token3\", json.token)",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"anil2@gmail.com\",\n    \"password\": \"asenocak\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const   response    =   pm.response",
+									"        json        =   response.json()",
+									"pm.test(\"Status code is 200\", function () {",
+									"    response.to.have.status(200)",
+									"    pm.globals.set(\"token\", json.token)",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"lorem ipsum\",\n    \"email\": \"lorem@ipsum.com\",\n    \"username\": \"lorem\",\n    \"password\": \"Asenocak_1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/user/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"asenocak2\",\n    \"password\": \"asenocak2\",\n    \"password_confirmation\": \"asenocak2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/user/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "template",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/v1/user/todos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "gmail",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const   response    =   pm.response",
+									"        json        =   response.json()",
+									"pm.test(\"Status code is 201\", function () {",
+									"    response.to.have.status(201)",
+									"    pm.collectionVariables.set(\"todo\", json.id)",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "template",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"{{$randomLoremParagraph}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/todos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/user/todos/{{todo}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"todos",
+								"{{todo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "template",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"{{$randomLoremParagraph}}\",\n    \"finished\": {{$randomBoolean}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/todos/{{todo}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"todos",
+								"{{todo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-API-VERSION",
+								"value": "template",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/v1/user/todos/{{todo}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"todos",
+								"{{todo}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8081",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "refreshToken",
+			"value": ""
+		},
+		{
+			"key": "token1",
+			"value": ""
+		},
+		{
+			"key": "todo",
+			"value": ""
+		}
+	]
+}
