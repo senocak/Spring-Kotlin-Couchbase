@@ -1,1 +1,1 @@
-rootProject.name = "skmb"
+rootProject.name = "skcb"
