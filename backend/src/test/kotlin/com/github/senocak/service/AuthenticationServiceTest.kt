@@ -1,6 +1,6 @@
-package com.github.senocak.auth.service
+package com.github.senocak.service
 
-import com.github.senocak.auth.TestConstants
+import com.github.senocak.TestConstants
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName

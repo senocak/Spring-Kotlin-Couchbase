@@ -1,11 +1,11 @@
-package com.github.senocak.auth
+package com.github.senocak
 
-import com.github.senocak.auth.TestConstants.USER_EMAIL
-import com.github.senocak.auth.TestConstants.USER_NAME
-import com.github.senocak.auth.TestConstants.USER_PASSWORD
-import com.github.senocak.auth.domain.TodoItem
-import com.github.senocak.auth.domain.User
-import com.github.senocak.auth.util.RoleName
+import com.github.senocak.TestConstants.USER_EMAIL
+import com.github.senocak.TestConstants.USER_NAME
+import com.github.senocak.TestConstants.USER_PASSWORD
+import com.github.senocak.domain.TodoItem
+import com.github.senocak.domain.User
+import com.github.senocak.util.RoleName
 import java.util.ArrayList
 import java.util.Date
 import java.util.UUID

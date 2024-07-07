@@ -36,5 +36,14 @@ export default class UserApiClient extends AbstractHttpClient {
         return this.classInstance
     }
 
-    public me = async () => await this.instance.get('/user/me')
+    public me = async () =>
+        await this.instance.get('/user/me')
+    public alltodos = async (page: number, size: number) =>
+        await this.instance.get(`/user/todos?page=${page}&size=${size}`)
+    public addtodo = async (description: string) =>
+        await this.instance.post(`/user/todos`, {"description": description})
+    public deletetodo = async (id: string) =>
+        await this.instance.delete(`/user/todos/${id}`)
+    public updatetodo = async (id: string, description: string, finished: boolean) =>
+        await this.instance.patch(`/user/todos/${id}`, {"description": description, "finished": finished})
 }

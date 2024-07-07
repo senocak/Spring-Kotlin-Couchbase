@@ -1,4 +1,4 @@
-package com.github.senocak.auth
+package com.github.senocak
 
 import java.time.Duration
 

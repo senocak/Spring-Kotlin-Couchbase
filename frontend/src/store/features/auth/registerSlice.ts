@@ -12,9 +12,9 @@ export const fetchRegister = createAsyncThunk('auth/fetchRegister',
         return data
     } catch (error: any) {
         if (!error.response) {
+            console.error("Error while registering", error.response)
             throw error
         }
-
         return rejectWithValue(error)
     }
 })
@@ -38,13 +38,13 @@ const authRegisterSlice = createSlice({
             state.error = null
         })
 
-        builder.addCase(fetchRegister.fulfilled, (state, action: PayloadAction<IRegisterResponse>) => {
+        builder.addCase(fetchRegister.fulfilled, (state, action: PayloadAction<IRegisterResponse>): void => {
             state.isLoading = false
             state.response = action.payload
             state.error = null
         })
 
-        builder.addCase(fetchRegister.rejected, (state, action) => {
+        builder.addCase(fetchRegister.rejected, (state, action): void => {
             state.isLoading = false
             state.response = null
             state.error = action.payload

@@ -1,6 +1,6 @@
-package com.github.senocak.auth.config
+package com.github.senocak.config
 
-import com.github.senocak.auth.config.initializer.CouchbaseInitializer
+import com.github.senocak.config.initializer.CouchbaseInitializer
 import org.junit.jupiter.api.ClassOrderer
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.TestClassOrder

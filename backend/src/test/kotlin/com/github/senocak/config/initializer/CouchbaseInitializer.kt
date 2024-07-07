@@ -1,6 +1,6 @@
-package com.github.senocak.auth.config.initializer
+package com.github.senocak.config.initializer
 
-import java.time.Duration
+import com.github.senocak.TestConstants.CONTAINER_WAIT_TIMEOUT
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.test.util.TestPropertyValues
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -37,7 +37,7 @@ class CouchbaseInitializer : ApplicationContextInitializer<ConfigurableApplicati
             .withExposedPorts(8091, 8092, 8093, 8094, 8095, 8096, 11210)
             .withCredentials("Administrator", "password")
             .withBucket(bucketDefinition)
-            .withStartupTimeout(Duration.ofSeconds(60))
+            .withStartupTimeout(CONTAINER_WAIT_TIMEOUT)
 
         init {
             couchbaseContainer.start()

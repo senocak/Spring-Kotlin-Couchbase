@@ -1,14 +1,14 @@
-package com.github.senocak.auth.service
+package com.github.senocak.service
 
-import com.github.senocak.auth.createTestTodo
-import com.github.senocak.auth.createTestUser
-import com.github.senocak.auth.domain.TodoItem
-import com.github.senocak.auth.domain.TodoItemRepository
-import com.github.senocak.auth.domain.User
-import com.github.senocak.auth.domain.UserRepository
-import com.github.senocak.auth.domain.dto.CreateTodoDto
-import com.github.senocak.auth.domain.dto.UpdateTodoDto
-import com.github.senocak.auth.exception.ServerException
+import com.github.senocak.createTestTodo
+import com.github.senocak.createTestUser
+import com.github.senocak.domain.TodoItem
+import com.github.senocak.domain.TodoItemRepository
+import com.github.senocak.domain.User
+import com.github.senocak.domain.UserRepository
+import com.github.senocak.domain.dto.CreateTodoDto
+import com.github.senocak.domain.dto.UpdateTodoDto
+import com.github.senocak.exception.ServerException
 import java.util.Optional
 import java.util.UUID
 import org.junit.jupiter.api.DisplayName
@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.`when`
-import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.verify
 import org.springframework.data.domain.Page

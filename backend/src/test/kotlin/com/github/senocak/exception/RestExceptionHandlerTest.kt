@@ -1,7 +1,7 @@
-package com.github.senocak.auth.exception
+package com.github.senocak.exception
 
-import com.github.senocak.auth.domain.dto.ExceptionDto
-import com.github.senocak.auth.util.OmaErrorMessageType
+import com.github.senocak.domain.dto.ExceptionDto
+import com.github.senocak.util.OmaErrorMessageType
 import java.util.ArrayList
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Tag
