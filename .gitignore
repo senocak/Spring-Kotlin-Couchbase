@@ -5,3 +5,4 @@
 .idea
 .kotlin
 **/var/logs/
+**/.DS_STORE
