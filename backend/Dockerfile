@@ -6,8 +6,7 @@ RUN gradle clean build -Pprofile=unit
 #RUN gradle clean build -Pprofile=integration
 
 # Package stage
-FROM openjdk:21-ea-17-slim-buster
+FROM openjdk:17-jdk-slim
 RUN mkdir /app
-COPY --from=build /home/gradle/src/build/libs/skmb-0.0.1.jar /app/app.jar
-#EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+COPY --from=build /home/gradle/src/build/libs/skcb-0.0.1.jar /app/app.jar
+ENTRYPOINT ["java", "--enable-preview", "-jar", "/app/app.jar"]

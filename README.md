@@ -41,6 +41,11 @@ yarn start
 
 Visit: `http://localhost:3232/`
 
+### Running using docker
+```sh 
+docker-compose up -d
+```
+
 ### Screenshoots
 
 ![index.png](index.png)

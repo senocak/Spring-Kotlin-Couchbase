@@ -23,4 +23,4 @@ logging:
       springframework:
         security: debug
         data:
-          mongodb: debug
+          couchbase: debug
