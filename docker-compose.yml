@@ -2,9 +2,9 @@ version: '3.7'
 services:
   backend:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
-    container_name: hepsi-emlak-spring-kotlin
+    container_name: spring-kotlin
     ports:
       - "8082:8082"
     restart: no
@@ -14,23 +14,12 @@ services:
       COUCHBASE_USERNAME: admin
       COUCHBASE_PASSWORD: password
       COUCHBASE_BUCKETNAME: mybucket
-      COUCHBASE_SCOPE: hepsi-emplak-scope
+      COUCHBASE_SCOPE: boilerplate-scope
       COUCHBASE_DDL: create #will create the scope and collections
     networks:
-      - hepsi-emlak
+      - boilerplate
     depends_on:
       - couchbase
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: hepsi-emlak-react-typescript
-    ports:
-      - "3232:3232"
-    depends_on:
-      - backend
-    networks:
-      - hepsi-emlak
   couchbase:
     image: couchbase:7.6.1
     container_name: couchbase
@@ -45,8 +34,8 @@ services:
     volumes:
       - couchbase_data:/opt/couchbase/var
     networks:
-      - hepsi-emlak
+      - boilerplate
 volumes:
   couchbase_data:
 networks:
-  hepsi-emlak:
+  boilerplate:

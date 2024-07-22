@@ -8,7 +8,7 @@ spring:
     username: ${COUCHBASE_USERNAME:admin}
     password: ${COUCHBASE_PASSWORD:password}
     bucketName: ${COUCHBASE_BUCKETNAME:mybucket}
-    scope: ${COUCHBASE_SCOPE:hepsi-emplak-scope}
+    scope: ${COUCHBASE_SCOPE:boilerplate-scope}
     ddl: ${COUCHBASE_DDL:none}
 app:
   jwtSecret: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
